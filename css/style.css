@@ -1,0 +1,1627 @@
+/* ============================================================
+   HASALZİRVE'27 — Basın Posteri Tasarım Sistemi
+   Karakter: Neo-brutalist gazete/poster dili — kalın çerçeveler,
+   sert offset gölgeler, mono etiketler, kayan bülten şeridi.
+   Palet: derin lacivert + buz mavisi + açık gri-mavi
+   ============================================================ */
+
+:root {
+  /* Renk */
+  --blue: #9fbbd1;
+  --blue-hover: #b7cfe1;
+  --blue-deep: #86a8c2;
+  --ice: #cbdbea;
+  --ice-2: #a9c0d4;
+  --ice-3: #7d95ad;
+  --ice-4: #5b7690;
+  --navy: #152235;
+  --navy-2: #182a40;
+  --panel: #1b2f49;
+  --paper: #cbdbea;
+  --paper-2: #d9e6f1;
+  --white: #cbdbea;
+  --ink: #152235;
+  --ink-text: #1c3046;
+  --line: #263b52;
+  --line-strong: #33506e;
+
+  /* Tipografi */
+  --font-brand: "Archivo Black", "Archivo", Impact, sans-serif;
+  --font-head: "Archivo", Helvetica, Arial, sans-serif;
+  --font-body: "Space Grotesk", Helvetica, Arial, sans-serif;
+  --font-mono: "Space Mono", Consolas, monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ice-2);
+  background-color: var(--navy);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--blue);
+  color: var(--navy);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  background: var(--navy);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--blue);
+  border: 3px solid var(--navy);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--ice);
+  text-decoration: none;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+ul {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-head);
+  font-weight: 800;
+  color: var(--ice);
+  line-height: 1.2;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 90px 0;
+}
+
+/* Bölüm başlığı: gazete kupür stili — sol hizalı, mavi blok işaretli */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
+  color: var(--ice);
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  line-height: 1.05;
+  text-align: left;
+  margin-bottom: 14px;
+}
+
+.section-title::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-color: var(--blue);
+  border: 2px solid currentColor;
+  flex-shrink: 0;
+}
+
+.section-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ice-3);
+  text-align: left;
+  margin-bottom: 56px;
+}
+
+/* ---------------- Butonlar ---------------- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 15px 34px;
+  border-radius: 0;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease,
+    background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  text-align: center;
+}
+
+/* Basılı blok buton: sert gölge ile "bas" hissi */
+.btn-primary {
+  background-color: var(--blue);
+  color: var(--navy);
+  border-color: var(--ice);
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.55);
+}
+
+.btn-primary:hover {
+  background-color: var(--blue-hover);
+  color: var(--navy);
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.55);
+}
+
+/* Ters-çevrilen çerçeve buton */
+.btn-outline {
+  background-color: transparent;
+  color: var(--ice);
+  border-color: var(--ice);
+}
+
+.btn-outline:hover {
+  background-color: var(--ice);
+  color: var(--navy);
+}
+
+/* ---------------- Header: Gazete Masthead ---------------- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: var(--navy);
+  border-bottom: 3px solid var(--ice);
+}
+
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  height: 54px;
+  width: auto;
+}
+
+.brand-name {
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ice);
+  white-space: nowrap;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-links a {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ice-2);
+  padding: 8px 11px;
+  border: 2px solid transparent;
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.nav-links a:hover {
+  background-color: var(--ice);
+  color: var(--navy);
+}
+
+.nav-links a.active {
+  background-color: var(--blue);
+  color: var(--navy);
+}
+
+.btn-basvur {
+  display: inline-block;
+  background-color: var(--blue);
+  color: var(--navy);
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 11px 24px;
+  border: 2px solid var(--ice);
+  border-radius: 0;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-basvur:hover {
+  background-color: var(--ice);
+  color: var(--navy);
+}
+
+/* ---------------- Bülten Şeridi (Marquee) ---------------- */
+.ticker {
+  overflow: hidden;
+  background-color: var(--blue);
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: zirve-ticker 30s linear infinite;
+}
+
+.ticker-track span {
+  display: block;
+  white-space: nowrap;
+  padding: 9px 0;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.66rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+
+@keyframes zirve-ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Hamburger */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  background: transparent;
+  border: 2px solid var(--ice);
+  border-radius: 0;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: var(--ice);
+  border-radius: 0;
+  transition: all 0.2s ease;
+}
+
+body.nav-open .nav-toggle span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+body.nav-open .nav-toggle span:nth-child(2) {
+  opacity: 0;
+}
+
+body.nav-open .nav-toggle span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(6, 13, 21, 0.7);
+  /* Header'ın (z-index 1000) ALTINDA kalarak sayfayı karartır */
+  z-index: 990;
+}
+
+/* ---------------- Ana Sayfa Hero: Poster ---------------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 210px 24px 150px;
+  background-color: var(--navy);
+  border-bottom: 3px solid var(--ice);
+  overflow: hidden;
+}
+
+/* Çapraz tarama dokusu — alt sayfalarla aynı arka plan */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(203, 219, 234, 0.045) 0 2px,
+    transparent 2px 22px
+  );
+}
+
+/* Dev kontur filigran */
+.hero::after {
+  content: "HASALZİRVE'27";
+  position: absolute;
+  left: -12px;
+  bottom: -0.26em;
+  font-family: var(--font-brand);
+  font-size: clamp(3.6rem, 13vw, 10rem);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(203, 219, 234, 0.1);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  text-align: left;
+}
+
+/* Sticker etiket */
+.hero-kicker {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background-color: var(--ice);
+  padding: 9px 14px;
+  margin-bottom: 34px;
+  box-shadow: 5px 5px 0 var(--blue);
+}
+
+/* Dev yığın tipografi */
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 36px;
+}
+
+.hero h1,
+.hero-title .ht-line {
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: clamp(3.4rem, 12vw, 8rem);
+  line-height: 0.92;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--ice);
+  text-shadow: 7px 7px 0 rgba(5, 10, 18, 0.6);
+}
+
+/* İkinci satır: mavi blok üzerine damgalanmış */
+.hero-title .ht-accent {
+  align-self: flex-start;
+  margin-top: 10px;
+  padding: 15px 20px 10px;
+  background-color: var(--blue);
+  border: 2px solid var(--ice);
+  color: var(--navy);
+  text-shadow: none;
+  box-shadow: 8px 8px 0 rgba(5, 10, 18, 0.55);
+}
+
+.hero-sub {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ice-2);
+  padding-left: 18px;
+  border-left: 4px solid var(--blue);
+  margin-bottom: 46px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.hero .btn {
+  font-size: 0.95rem;
+  padding: 17px 44px;
+}
+
+/* ---------------- Geri Sayım: Mavi Bant ---------------- */
+.countdown-section {
+  padding: 64px 24px 58px;
+  background-color: var(--blue);
+  border-bottom: 3px solid var(--navy);
+  text-align: center;
+}
+
+.countdown-label {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 38px;
+}
+
+.countdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Flip-saat hücresi */
+.count-box {
+  min-width: 116px;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 20px 12px;
+}
+
+.count-number {
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 5.5vw, 3.4rem);
+  color: var(--navy);
+  line-height: 1;
+}
+
+.count-text {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(21, 34, 53, 0.75);
+  margin-top: 12px;
+}
+
+.count-sep {
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: 2.5rem;
+  color: rgba(21, 34, 53, 0.5);
+}
+
+/* ---------------- Mektuplar: Bülten Sayfası ---------------- */
+.letters-section {
+  background-color: var(--paper);
+  padding: 100px 24px;
+}
+
+.letters-section .section-title {
+  color: var(--ink);
+}
+
+.letters-section .section-title::before {
+  border-color: var(--ink);
+}
+
+.letters-section .section-subtitle {
+  color: #5b7690;
+}
+
+.letters-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Asimetrik kolaj: ikinci kart hafifçe kayar */
+.letter-card:nth-child(2) {
+  margin-top: 32px;
+}
+
+.letter-card {
+  background-color: var(--paper-2);
+  border: 3px solid var(--ink);
+  border-radius: 0;
+  padding: 38px 34px;
+  box-shadow: 10px 10px 0 var(--ink);
+}
+
+/* Künye etiketi */
+.letter-card h3 {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.66rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ice);
+  background-color: var(--ink);
+  padding: 8px 12px;
+  margin-bottom: 24px;
+}
+
+.letter-card p {
+  font-size: 0.96rem;
+  color: var(--ink-text);
+  line-height: 1.8;
+  text-align: justify;
+  margin-bottom: 14px;
+}
+
+.letter-sign {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-top: 26px;
+}
+
+.letter-role {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #5b7690;
+  margin-top: 4px;
+}
+
+/* ---------------- Alt Sayfa Hero: Afiş ---------------- */
+.page-hero {
+  position: relative;
+  padding: 200px 24px 80px;
+  background-color: var(--navy);
+  border-bottom: 3px solid var(--ice);
+  overflow: hidden;
+}
+
+/* Çapraz tarama dokusu */
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(203, 219, 234, 0.045) 0 2px,
+    transparent 2px 22px
+  );
+}
+
+/* Dev kontur filigran */
+.page-hero::after {
+  content: "HASALZİRVE'27";
+  position: absolute;
+  left: -12px;
+  bottom: -0.26em;
+  font-family: var(--font-brand);
+  font-size: clamp(3.6rem, 13vw, 10rem);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(203, 219, 234, 0.1);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.page-hero h1 {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto 20px;
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 7.5vw, 4.6rem);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+  color: var(--ice);
+  text-align: left;
+  border-left: 8px solid var(--blue);
+  padding-left: 22px;
+}
+
+/* Sayfa künyesi */
+.page-hero h1::before {
+  content: "HASALZİRVE'27 — ZİRVE KONFERANSI";
+  display: block;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.66rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ice-3);
+  margin-bottom: 16px;
+  padding-left: 0;
+}
+
+.page-hero p {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.9;
+  color: var(--ice-3);
+  text-align: left;
+  padding-left: 30px;
+}
+
+/* ---------------- Kart Izgarası: Poster Vitrini ---------------- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 34px;
+}
+
+.committee-card {
+  background-color: var(--panel);
+  border: 2px solid var(--line-strong);
+  border-radius: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.committee-card:hover {
+  transform: translate(-5px, -5px);
+  border-color: var(--ice);
+  box-shadow: 9px 9px 0 rgba(159, 187, 209, 0.9);
+}
+
+.committee-card img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-bottom: 2px solid var(--line-strong);
+  filter: grayscale(0.85) contrast(1.05);
+  transition: filter 0.3s ease;
+}
+
+.committee-card:hover img {
+  filter: grayscale(0);
+}
+
+.card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.card-body h3 {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ice);
+  line-height: 1.35;
+}
+
+.card-topic {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  line-height: 1.7;
+  color: var(--ice-3);
+  flex: 1;
+}
+
+.card-btn {
+  display: block;
+  margin-top: 18px;
+  background-color: var(--blue);
+  color: var(--navy);
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 12px;
+  border-radius: 0;
+  border-top: 2px solid var(--line-strong);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.card-btn:hover {
+  background-color: var(--ice);
+  color: var(--navy);
+}
+
+.committee-card:hover .card-btn {
+  background-color: var(--ice);
+  color: var(--navy);
+}
+
+/* ---------------- Konuşmacı / Atölye Detay ---------------- */
+.detail-section {
+  padding-top: 200px;
+}
+
+.breadcrumb {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ice-3);
+  margin-bottom: 36px;
+}
+
+.breadcrumb a {
+  color: var(--ice-2);
+}
+
+.breadcrumb a:hover {
+  color: var(--ice);
+  text-decoration: underline;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 400px) 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.detail-poster {
+  border: 2px solid var(--ice);
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.55);
+  background-color: var(--panel);
+}
+
+.detail-poster img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  filter: grayscale(0.55) contrast(1.05);
+  transition: filter 0.35s ease;
+}
+
+.detail-poster:hover img {
+  filter: grayscale(0);
+}
+
+.detail-info h1 {
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+  color: var(--ice);
+  margin-bottom: 32px;
+  border-left: 8px solid var(--blue);
+  padding-left: 20px;
+}
+
+.detail-row {
+  border-left: 5px solid var(--blue);
+  padding: 2px 0 2px 18px;
+  margin-bottom: 22px;
+}
+
+.detail-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ice-3);
+  margin-bottom: 6px;
+}
+
+.detail-value {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 0.98rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ice);
+}
+
+.detail-desc {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--ice-2);
+  text-align: justify;
+  margin-top: 14px;
+}
+
+.detail-desc p + p {
+  margin-top: 14px;
+}
+
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 38px;
+}
+
+/* ---------------- Ekip: Departman Bölümleri ---------------- */
+.team-groups {
+  counter-reset: teamgroup;
+}
+
+.team-group {
+  counter-increment: teamgroup;
+  margin-bottom: 68px;
+}
+
+.team-group:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Numaralı bölüm künyesi: 01 BAŞKANLIK, 02 TEKNİK EKİP... */
+.team-group-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 3vw, 1.8rem);
+  text-transform: uppercase;
+  letter-spacing: -0.2px;
+  color: var(--ice);
+  border-bottom: 2px solid var(--line-strong);
+  padding-bottom: 14px;
+  margin-bottom: 30px;
+}
+
+.team-group-title::before {
+  content: counter(teamgroup, decimal-leading-zero);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--navy);
+  background-color: var(--blue);
+  border: 2px solid var(--ice);
+  padding: 4px 8px;
+  flex-shrink: 0;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 32px;
+}
+
+.team-card {
+  background-color: var(--panel);
+  border: 2px solid var(--line-strong);
+  border-radius: 0;
+  overflow: hidden;
+  transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.team-card:hover {
+  transform: translate(-5px, -5px);
+  border-color: var(--ice);
+  box-shadow: 9px 9px 0 rgba(159, 187, 209, 0.9);
+}
+
+.team-photo {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-bottom: 2px solid var(--line-strong);
+}
+
+.team-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.8) contrast(1.05);
+  transition: filter 0.35s ease, transform 0.45s ease;
+}
+
+.team-card:hover .team-photo img {
+  transform: scale(1.04);
+  filter: grayscale(0);
+}
+
+.team-body {
+  padding: 18px 20px 24px;
+}
+
+.team-role {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+
+.team-name {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.02rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ice);
+}
+
+/* ---------------- SSS: Dosya Listesi ---------------- */
+.faq-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background-color: var(--panel);
+  border: 2px solid var(--line-strong);
+  border-radius: 0;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.faq-item.open {
+  border-color: var(--ice);
+}
+
+.faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ice);
+  padding: 20px 22px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.faq-q:hover {
+  background-color: rgba(203, 219, 234, 0.06);
+  color: var(--ice);
+}
+
+.faq-item.open .faq-q {
+  background-color: var(--blue);
+  color: var(--navy);
+}
+
+.faq-icon {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--blue);
+  transition: all 0.2s ease;
+}
+
+.faq-icon::before {
+  width: 18px;
+  height: 3px;
+}
+
+.faq-icon::after {
+  width: 3px;
+  height: 18px;
+}
+
+.faq-item.open .faq-icon::before,
+.faq-item.open .faq-icon::after {
+  background-color: var(--navy);
+}
+
+.faq-item.open .faq-icon::after {
+  height: 0;
+}
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.faq-item.open .faq-a {
+  max-height: 800px;
+}
+
+.faq-a-inner {
+  padding: 22px;
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--ice-2);
+}
+
+.faq-a-inner a {
+  color: var(--ice);
+  text-decoration: underline;
+}
+
+.faq-a-inner a:hover {
+  color: var(--blue);
+}
+
+.faq-note {
+  text-align: center;
+  margin-top: 38px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ice-3);
+}
+
+.faq-note a {
+  color: var(--ice-2);
+  text-decoration: underline;
+}
+
+.faq-note a:hover {
+  color: var(--ice);
+}
+
+/* ---------------- Takvim: Gün Programı ---------------- */
+.schedule-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1080px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.schedule-day {
+  background-color: var(--panel);
+  border: 2px solid var(--line-strong);
+  border-radius: 0;
+  box-shadow: 10px 10px 0 rgba(5, 10, 18, 0.55);
+}
+
+/* Gün başlığı bandı */
+.schedule-day-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background-color: var(--blue);
+  color: var(--navy);
+  padding: 16px 20px;
+  border-bottom: 3px solid var(--navy);
+}
+
+.schedule-day-num {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--ice);
+  background-color: var(--navy);
+  border: 2px solid var(--navy);
+  padding: 4px 8px;
+  flex-shrink: 0;
+}
+
+.schedule-day-title {
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: 1.35rem;
+  text-transform: uppercase;
+  letter-spacing: -0.2px;
+  color: var(--navy);
+  line-height: 1;
+}
+
+/* Program satırları */
+.schedule-row {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding: 15px 20px;
+  border-bottom: 2px solid var(--line);
+}
+
+.schedule-row:last-child {
+  border-bottom: none;
+}
+
+.schedule-time {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  white-space: nowrap;
+  min-width: 108px;
+  flex-shrink: 0;
+}
+
+.schedule-event {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ice);
+  flex: 1;
+}
+
+/* Ara verilen oturumlar (öğle arası) — sönük, kesik çizgili */
+.schedule-row.is-break {
+  background-color: rgba(203, 219, 234, 0.04);
+  border-bottom: 2px dashed var(--line-strong);
+}
+
+.schedule-row.is-break .schedule-event,
+.schedule-row.is-break .schedule-time {
+  color: var(--ice-3);
+  font-weight: 700;
+}
+
+/* Program altı not */
+.schedule-note {
+  text-align: center;
+  margin-top: 48px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ice-3);
+}
+
+/* ---------------- Başvuru ---------------- */
+.apply-notice {
+  max-width: 860px;
+  margin: 0 auto 54px;
+  background-color: var(--blue);
+  border: 2px solid var(--ice);
+  border-radius: 0;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.5);
+  padding: 22px 28px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--navy);
+  text-align: center;
+}
+
+.apply-notice strong {
+  color: var(--navy);
+  font-weight: 800;
+}
+
+/* Başvuru kartları: 2 kutu */
+.apply-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 34px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.apply-note {
+  text-align: center;
+  margin-top: 48px;
+  color: var(--ice-3);
+}
+
+/* ---------------- İletişim ---------------- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.contact-card {
+  display: block;
+  background-color: var(--panel);
+  border: 2px solid var(--line-strong);
+  border-radius: 0;
+  padding: 36px 24px;
+  text-align: center;
+  transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.contact-card:hover {
+  transform: translate(-4px, -4px);
+  border-color: var(--ice);
+  box-shadow: 8px 8px 0 rgba(159, 187, 209, 0.9);
+}
+
+.contact-card svg {
+  width: 34px;
+  height: 34px;
+  fill: var(--blue);
+  margin: 0 auto 20px;
+}
+
+.contact-card h3 {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.64rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ice-3);
+  margin-bottom: 12px;
+}
+
+.contact-card p {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--ice);
+  word-break: break-word;
+}
+
+.contact-card a {
+  color: var(--ice);
+}
+
+.contact-card a:hover {
+  color: var(--blue);
+}
+
+.contact-lead {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 54px;
+  font-size: 1rem;
+  color: var(--ice-2);
+  line-height: 1.85;
+}
+
+.contact-lead strong {
+  color: var(--ice);
+}
+
+/* ---------------- Footer: Basın Künyesi ---------------- */
+.site-footer {
+  position: relative;
+  background-color: var(--navy);
+  border-top: 3px solid var(--ice);
+  padding: 70px 24px 130px;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Dev kontur filigran */
+.site-footer::before {
+  content: "HASALZİRVE'27";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -0.3em;
+  font-family: var(--font-brand);
+  font-size: clamp(3.2rem, 11vw, 9rem);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(203, 219, 234, 0.08);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.footer-logo {
+  height: 92px;
+  width: auto;
+  margin: 0 auto 30px;
+  padding: 1px;
+}
+
+.footer-desc {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ice-3);
+  margin-bottom: 32px;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 38px;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ice);
+  border: 2px solid var(--line-strong);
+  padding: 9px 16px;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.footer-social a svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--ice-2);
+  transition: fill 0.15s ease;
+}
+
+.footer-social a:hover {
+  background-color: var(--ice);
+  color: var(--navy);
+  border-color: var(--ice);
+}
+
+.footer-social a:hover svg {
+  fill: var(--navy);
+}
+
+.footer-divider {
+  width: min(420px, 70%);
+  height: 0;
+  border-top: 2px dashed var(--line-strong);
+  margin: 0 auto 22px;
+}
+
+.footer-copy {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ice-4);
+}
+
+/* ---------------- Duyarlı Tasarım ---------------- */
+@media (max-width: 1150px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .site-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1060;
+    width: min(340px, 86vw);
+    background-color: var(--navy-2);
+    border-left: 3px solid var(--ice);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 120px 0 40px;
+    transform: translateX(100%);
+    transition: transform 0.25s ease;
+    overflow-y: auto;
+  }
+
+  body.nav-open .site-nav {
+    transform: translateX(0);
+  }
+
+  body.nav-open .nav-overlay {
+    display: block;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 16px 28px;
+    font-size: 0.95rem;
+    border: none;
+    border-bottom: 2px solid var(--line);
+  }
+
+  .nav-links a:hover {
+    background-color: var(--ice);
+    color: var(--navy);
+  }
+
+  .nav-links a.active {
+    background-color: var(--blue);
+    color: var(--navy);
+  }
+
+  .btn-basvur {
+    margin: 24px 28px 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 1023px) {
+  .schedule-wrap {
+    grid-template-columns: 1fr;
+    max-width: 620px;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-poster {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 940px) {
+  .letters-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .letter-card:nth-child(2) {
+    margin-top: 0;
+  }
+
+  .letter-card {
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+
+  .hero {
+    padding-top: 220px;
+  }
+
+  .page-hero {
+    padding-top: 210px;
+  }
+
+  .detail-section {
+    padding-top: 190px;
+  }
+}
+
+@media (max-width: 760px) {
+  .apply-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    max-width: 460px;
+  }
+}
+
+@media (max-width: 560px) {
+  .count-box {
+    min-width: 78px;
+    padding: 14px 6px;
+  }
+
+  .count-sep {
+    display: none;
+  }
+
+  .countdown {
+    gap: 10px;
+  }
+
+  .brand-name {
+    font-size: 0.88rem;
+  }
+
+  .brand-logo {
+    height: 46px;
+  }
+
+  .hero {
+    padding-top: 200px;
+  }
+
+  .hero-kicker {
+    font-size: 0.6rem;
+  }
+
+  .hero-sub {
+    letter-spacing: 0.2em;
+  }
+
+  .letter-card {
+    padding: 28px 22px;
+  }
+
+  .schedule-day-head {
+    padding: 13px 16px;
+  }
+
+  .schedule-row {
+    padding: 13px 14px;
+    gap: 12px;
+  }
+
+  .schedule-time {
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .ticker-track {
+    animation: none;
+  }
+
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
