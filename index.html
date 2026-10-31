@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HASALZİRVE'27 — Hasal Zirve Konferansı</title>
+  <meta name="description" content="HASALZİRVE'27 Zirve Konferansı — konuşmacılar, atölyeler, ekip, başvuru ve tüm bilgiler.">
+  <link rel="icon" type="image/png" href="zirve_logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand" aria-label="HASALZİRVE'27 Ana Sayfa">
+        <img src="zirve_logo.png" alt="HASALZİRVE Logosu" class="brand-logo" onerror="this.style.display='none'">
+        <span class="brand-name">HASALZİRVE'27</span>
+      </a>
+      <nav class="site-nav" aria-label="Ana menü">
+        <ul class="nav-links">
+          <li><a href="index.html" class="active" aria-current="page">Ana Sayfa</a></li>
+          <li><a href="konusmacilar.html">Konuşmacılar</a></li>
+          <li><a href="atolyeler.html">Atölyeler</a></li>
+          <li><a href="ekip.html">Ekip</a></li>
+          <li><a href="sss.html">SSS</a></li>
+          <li><a href="takvim.html">Takvim</a></li>
+          <li><a href="iletisim.html">İletişim</a></li>
+        </ul>
+        <a href="basvur.html" class="btn-basvur">Başvur</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Menüyü aç" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>HASALZİRVE'27 &nbsp;//&nbsp; BAŞVURULAR AÇIK &nbsp;//&nbsp; KONUŞMALAR &nbsp;//&nbsp; ATÖLYELER &nbsp;//&nbsp; BİZİ TAKİP ET &nbsp;//&nbsp;</span>
+        <span>HASALZİRVE'27 &nbsp;//&nbsp; BAŞVURULAR AÇIK &nbsp;//&nbsp; KONUŞMALAR &nbsp;//&nbsp; ATÖLYELER &nbsp;//&nbsp; BİZİ TAKİP ET &nbsp;//&nbsp;</span>
+        <span>HASALZİRVE'27 &nbsp;//&nbsp; BAŞVURULAR AÇIK &nbsp;//&nbsp; KONUŞMALAR &nbsp;//&nbsp; ATÖLYELER &nbsp;//&nbsp; BİZİ TAKİP ET &nbsp;//&nbsp;</span>
+        <span>HASALZİRVE'27 &nbsp;//&nbsp; BAŞVURULAR AÇIK &nbsp;//&nbsp; KONUŞMALAR &nbsp;//&nbsp; ATÖLYELER &nbsp;//&nbsp; BİZİ TAKİP ET &nbsp;//&nbsp;</span>
+      </div>
+    </div>
+  </header>
+  <div class="nav-overlay"></div>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-inner">
+        <p class="hero-kicker">HASAL KARIYER GELİŞİM KULÜBÜ</p>
+        <h1 class="hero-title">
+          <span class="ht-line">HASAL</span>
+          <span class="ht-line ht-accent">ZİRVE'27</span>
+        </h1>
+        <p class="hero-sub">Hoş Geldiniz</p>
+        <div class="hero-actions">
+          <a href="basvur.html" class="btn btn-primary">Şimdi Başvur</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Geri Sayım -->
+    <section class="countdown-section" id="countdown" aria-label="Zirveye kalan süre">
+      <p class="countdown-label">Zirveye Kalan Süre</p>
+      <div class="countdown" id="cd-boxes">
+        <div class="count-box">
+          <div class="count-number" id="cd-gun">00</div>
+          <div class="count-text">Gün</div>
+        </div>
+        <div class="count-sep">:</div>
+        <div class="count-box">
+          <div class="count-number" id="cd-saat">00</div>
+          <div class="count-text">Saat</div>
+        </div>
+        <div class="count-sep">:</div>
+        <div class="count-box">
+          <div class="count-number" id="cd-dakika">00</div>
+          <div class="count-text">Dakika</div>
+        </div>
+        <div class="count-sep">:</div>
+        <div class="count-box">
+          <div class="count-number" id="cd-saniye">00</div>
+          <div class="count-text">Saniye</div>
+        </div>
+      </div>
+      <p id="cd-bitti" style="display:none; font-family: var(--font-head); font-weight:800; font-size:1.6rem; color:var(--navy);">
+        Zirve Başladı!
+      </p>
+    </section>
+
+    <!-- Mektuplar -->
+    <section class="letters-section">
+      <h2 class="section-title">Başkanlık Mektupları</h2>
+      <p class="section-subtitle">Sizleri HASALZİRVE'27'ye davet ediyoruz</p>
+      <div class="letters-grid">
+
+        <article class="letter-card">
+          <h3>Başkan Mektubu</h3>
+          <p>Değerli Katılımcılar,</p>
+          <p>[TEST METNİ — Bu bölüm, mektubun asıl metniyle değiştirilecektir.] Sizleri HASALZİRVE'27 Zirve Konferansı'na davet etmekten büyük bir mutluluk duyuyoruz. Başkan'ın zirveyle ilgili selamlama ve davet cümleleri bu paragrafa yazılacaktır.</p>
+          <p>[TEST METNİ — İkinci paragraf buraya.] Zirvemizin amacı, katılımcılarına ilham verici bir ortam sunmak; farklı bakış açılarını, yeni fikirleri ve güçlü hikâyeleri bir araya getirmektir. Zirvenin sunduğu deneyimler bu bölümde anlatılacaktır.</p>
+          <p>[TEST METNİ — Kapanış paragrafı buraya.] Hepinize bu yolculukta başarılar diliyor; enerjiniz, emeğiniz ve katkınızla zirvemizi hep birlikte unutulmaz kılacağımıza yürekten inanıyorum.</p>
+          <p class="letter-sign">Saygılarımla,<br>baskan isim</p>
+          <p class="letter-role">Başkan</p>
+        </article>
+
+        <article class="letter-card">
+          <h3>Genel Direktör Mektubu</h3>
+          <p>Değerli Katılımcılar,</p>
+          <p>[TEST METNİ — Bu bölüm, mektubun asıl metniyle değiştirilecektir.] Sizleri HASALZİRVE'27 Zirve Konferansı'nda ağırlamaktan büyük bir mutluluk ve gurur duyuyorum. Genel Direktör'ün zirveyle ilgili görüş ve beklentileri bu paragrafa yazılacaktır.</p>
+          <p>[TEST METNİ — İkinci paragraf buraya.] Organizasyon ekibimiz, zirvenin her detayını sizler için büyük bir özenle hazırladı. Etkinlik boyunca sizi bekleyen deneyimler ve sürprizler bu bölümde anlatılacaktır.</p>
+          <p>[TEST METNİ — Kapanış paragrafı buraya.] Katkılarınız, enerjiniz ve fikirlerinizle bu organizasyonu hep birlikte unutulmaz kılacağımıza inanıyorum. Sizi aramızda görmekten mutluluk duyarız.</p>
+          <p class="letter-sign">Saygılarımla,<br>direktor isim</p>
+          <p class="letter-role">Genel Direktör</p>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <img src="zirve_logo.png" alt="HASALZİRVE Logosu" class="footer-logo">
+    <p class="footer-desc">HASAL KULÜPLERİ &mdash; HASALZİRVE'27 ZİRVE KONFERANSI</p>
+    <ul class="footer-social">
+      <li>
+        <a href="mailto:hasalzirve27@gmail.com">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          hasalzirve27@gmail.com
+        </a>
+      </li>
+      <li>
+        <a href="https://youtu.be/eRXC3EamKk4" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          Instagram
+        </a>
+      </li>
+    </ul>
+    <div class="footer-divider"></div>
+    <p class="footer-copy">&copy; <span class="year">2026</span> HASALZİRVE &mdash; Tüm hakları saklıdır.</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
